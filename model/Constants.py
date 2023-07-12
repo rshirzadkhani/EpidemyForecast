@@ -1,0 +1,1 @@
+SEIR_COMPARTMENTS = ['Susceptible', 'Exposed', 'Infected', 'Recovered']
