@@ -1,5 +1,5 @@
 from NetworkUtils import *
-from Safegraph_analyse import safegraph
+from model.Safegraph_analyse import safegraph
 from model.Network import Network, Data
 from model.DataPath import DataPath
 import random
@@ -17,56 +17,6 @@ def load_data(data, t_split=0):
     temp_G = load_temporal_edgelist_csv("./"+temporal_data_path)
 
 
-    # if data.name == Data.SCHOOL.name:
-    #     data_path = os.path.join(cur_dir,"data","Copenhagen_school", "school_daily_weighted_edgelist_agg.edgelist")
-    #     print(data_path)
-    #     G = nx.read_weighted_edgelist(data_path, nodetype=int)
-    #     print("Loading temporal graphs...")
-    #     temp_G = load_temporal_edgelist_csv("./data/Copenhagen_school/school_daily_agg.csv.gz")
-
-    # elif data.name == Data.WIFI1.name:
-    #     temp_G = None
-    #     data_path = os.path.join(cur_dir,"data","wifi", "mtl_wifi_2009-12-02_2010-03-08_GCC.edgelist")
-    #     G = nx.read_edgelist(data_path, nodetype = int)
-
-    # elif data.name == Data.COP1.name:
-    #     data_path = os.path.join(cur_dir,"data","copresence-1", "cop_1_hourly_weighted_edgelist_agg.edgelist")
-    #     G = nx.read_weighted_edgelist(data_path, nodetype=int)
-    #     print("Loading temporal graphs...")
-    #     temp_G = load_temporal_edgelist_csv("./data/copresence-1/cop_1_hourly_agg.csv.gz")
-
-    # elif data.name == Data.COP2.name:
-    #     data_path = os.path.join(cur_dir,"data","copresence-2", "cop_2_hourly_weighted_edgelist_agg.edgelist")
-    #     G = nx.read_weighted_edgelist(data_path, nodetype=int)
-    #     print("Loading temporal graphs...")
-    #     temp_G = load_temporal_edgelist_csv("./data/copresence-2/cop_2_hourly_agg.csv.gz")
-
-    # elif data.name == Data.COP3.name:
-    #     data_path = os.path.join(cur_dir,"data","copresence-3", "cop_3_hourly_weighted_edgelist_agg.edgelist")
-    #     G = nx.read_weighted_edgelist(data_path, nodetype=int)
-    #     print("Loading temporal graphs...")
-    #     temp_G = load_temporal_edgelist_csv("./data/copresence-3/cop_3_hourly_agg.csv.gz")
-
-    # elif data.name == Data.SFHH.name:
-    #     data_path = os.path.join(cur_dir,"data","sfhh", "sfhh_cop_hourly_weighted_edgelist_agg.edgelist")
-    #     G = nx.read_weighted_edgelist(data_path, nodetype=int)
-    #     print("Loading temporal graphs...")
-    #     temp_G = load_temporal_edgelist_csv("./data/sfhh/sfhh_cop_hourly_agg.csv.gz")
-
-    # elif data.name == Data.WIFI.name:
-    #     data_path = os.path.join(cur_dir,"data","wifi", "wifi_weekly_20w_weighted_edgelist_agg.edgelist")
-        # G = nx.read_weighted_edgelist(data_path, nodetype=int)
-        # print("Loading temporal graphs...")
-        # temp_G = load_temporal_edgelist_csv("./data/wifi/wifi_weekly_20w_agg.csv.gz")
-        # G, temp_G = wifi_edgelist_creator("./wifi/wifi_raw_data_3.csv.gz", "1/1/2009", "3/7/2010")
-
-
-    # elif data.name == Data.SAFEGRAPH.name:
-    #     data_path = os.path.join(cur_dir,"data","safegraph", "sg_weekly_d10_weighted_edgelist_agg.edgelist")
-    #     G = nx.read_weighted_edgelist(data_path, nodetype=int)
-    #     print("Loading temporal graphs...")
-    #     temp_G = load_temporal_edgelist_csv("./data/safegraph/sg_weekly_d10_agg.csv.gz")
-        
     T = len(temp_G)
     dates = list(range(0, T+1))
     all_nodes = G.number_of_nodes()
@@ -98,7 +48,7 @@ def load_contact_network(network, G, temp_G, seed, t_split):
         static_G = matching_degree_top_edge(G, init_G, degree)
 
 
-    elif network.name == Network.MST_D_MATCH_2.name:
+    elif network.name == Network.MST_D_MATCH.name:
         temporal_G = None
         all_nodes = G.number_of_nodes()
         degree = network_density(G, temp_G, len(temp_G), all_nodes)

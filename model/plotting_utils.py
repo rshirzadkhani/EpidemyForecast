@@ -6,9 +6,9 @@ import matplotlib.cm as cm
 import os
 from scipy.ndimage import gaussian_filter1d
 
-from model.Constants import SIR_COMPARTMENTS, MOBILITY_TYPE_SYN, NETWORK_TYPES, SEIR_COMPARTMENTS, \
-     COVID_MODEL_NAMES
-from model.utils import get_sir_by_scope
+# from model.Constants import SIR_COMPARTMENTS, MOBILITY_TYPE_SYN, NETWORK_TYPES, SEIR_COMPARTMENTS, \
+#      COVID_MODEL_NAMES
+# from model.utils import get_sir_by_scope
 
 cur_dir = os.path.dirname(__file__)
         

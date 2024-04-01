@@ -1,0 +1,6 @@
+/data
+*.edgelist
+*.csv
+*.csv.gz
+*.gz
+*.npz

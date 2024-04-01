@@ -5,7 +5,7 @@ from model.Constants import SEIR_COMPARTMENTS
 # from model.ClassicSEIR import ClassicSEIR
 from model.StandardSEIR import StandardSEIR
 from model.plotting_utils import plot_for_contact_network, plot_edge_node
-from model.utils import compute_mean_confidence_interval, compute_mean_ci_seir
+from model.utils import compute_mean_confidence_interval
 from contact_network_utils import *
 from NetworkUtils import *
 from model.Network import Network, Data
@@ -42,13 +42,13 @@ def contact_network_exp(BETA, SIGMA, GAMMA, EI_0, data, network, seeds, save_pat
     G, removing_nodes = delete_disconnected_components(G)
     all_nodes -= len(removing_nodes)
     print("Number of removed nodes:", len(removing_nodes))
-    seed_indices = select_initial_nodes(temp_G[0], sir_0, seeds)
+    # seed_indices = select_initial_nodes(temp_G[0], sir_0, seeds)
 
-    for ntw in network:
-        print("Load "+ntw.name+" network...") 
-        static_G, temporal_G = load_contact_network(ntw, G, temp_G, 0, 0)
+    # for ntw in network:
+    #     print("Load "+ntw.name+" network...") 
+    #     static_G, temporal_G = load_contact_network(ntw, G, temp_G, 0, 0)
 
-        print(shortest_path(static_G, temporal_G))
+    #     print(shortest_path(static_G, temporal_G))
         # print("Global Efficiency of", ntw, global_efficiency_calculater(static_G, temporal_G))
         # print("Algebraic Connectivity of", ntw, algebraic_connectivity_calculator(static_G, temporal_G))
         # print("Transitivity of", ntw, transitivity_calculator(static_G, temporal_G))
@@ -214,11 +214,11 @@ if __name__ == "__main__":
 
     # [Data.SCHOOL, Data.COP1, Data.COP2, Data.COP3, Data.SFHH, Data.WIFI, Data.SAFEGRAPH]
 
-    datasets = [Data.SAFEGRAPH]
+    datasets = [Data.SCHOOL, Data.WORKPLACE, Data.LYONSCHOOL, Data.HIGHSCHOOL, Data.CONFERENCE, Data.WIFI, Data.SAFEGRAPH]
 
-    exp_ntw_list = [Network.STATIC, Network.MST_D_MATCH_2, 
+    exp_ntw_list = [Network.STATIC, Network.MST_D_MATCH, 
                   Network.MST_W_MATCH, Network.TEMPORAL]
-    ntw_list_1 = [Network.STATIC, Network.MST_D_MATCH_2, 
+    ntw_list_1 = [Network.STATIC, Network.MST_D_MATCH, 
                   Network.MST_W_MATCH, Network.TEMPORAL]
     ntw_list_2 = [Network.STATIC, Network.STANDARD_GRAPH, Network.ER, 
                   Network.TEMPORAL]
@@ -230,7 +230,7 @@ if __name__ == "__main__":
         full_path = path+"/predict_cases_minst/"+path+"_"
         # full_path = path+"/predict_cases_maxst/"+path+"_"
         # full_path = path+"/new_1227/"+path+"_"
-        contact_network_exp_predict(BETA, SIGMA, GAMMA, EI_0, data = data_i, seeds=SEED, 
+        contact_network_exp(BETA, SIGMA, GAMMA, EI_0, data = data_i, seeds=SEED, 
                             network = exp_ntw_list, save_path = full_path)
 
     ###################### Plot experiments fig 3 ######################

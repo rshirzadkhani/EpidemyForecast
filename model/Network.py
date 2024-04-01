@@ -20,6 +20,5 @@ class Network(Enum):
     STATIC = auto()
     MST_W_MATCH = auto()
     MST_D_MATCH = auto()
-    MST_D_MATCH_2 = auto()
     STANDARD_EQ = auto()
     STANDARD_GRAPH = auto()
