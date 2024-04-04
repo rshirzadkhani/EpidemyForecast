@@ -40,7 +40,8 @@ def plot_for_contact_network(x, sir_all, lower, upper, filename, labels):
     plt.show()
     plt.savefig(filename)
 
-def plot_degree_distribution(degree_freq, node_num, labels, filename):
+def plot_degree_distribution(degree_freq, node_num, labels, data, network):
+    filepath = "/graph/{}/degree_dist/{}"
     fig = plt.figure(facecolor='w', figsize=(9,6))
     ax = fig.add_subplot(111)
     for idx, ntw_degree_freq in enumerate(degree_freq):
@@ -58,7 +59,7 @@ def plot_degree_distribution(degree_freq, node_num, labels, filename):
     legend.get_frame().set_alpha(0.5)
     plt.xlabel("degree")
     plt.ylabel("probability")
-    plt.savefig(filename)
+    plt.savefig(filepath)
 
 
 def plot_edge_node(dates,y1,  title):

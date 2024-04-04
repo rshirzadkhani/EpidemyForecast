@@ -60,7 +60,7 @@ def statistical_characteristics(actives, cumulatives,names):
 
                 peak_temp = np.where(actives[temp][seed,:]==max(actives[temp][seed, :]))
                 idx_p = np.where(actives[ntw][seed,:]==max(actives[ntw][seed, :]))        
-                peak_time.append((abs(idx_p[0][0] - peak_temp[0][0]))/peak_temp[0][0])
+                peak_time.append(abs(idx_p[0][0] - peak_temp[0][0]))#/peak_temp[0][0])
             # print(idx_p[0][0], peak_temp[0][0])
                 if peak_temp[0][0] == 0:
                     print("i", seed)
@@ -207,7 +207,7 @@ def transitivity_calculator(G, temp_G):
         d = []
         T = len(temp_G)
         for i in range(T):
-            print(i)
+            # print(i)
             d.append(nx.transitivity(temp_G[i]))
         return np.mean(d), "+-", np.std(d)
     else:

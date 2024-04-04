@@ -255,8 +255,8 @@ class safegraph:
         self.cbg_data = pd.read_csv(data_path, compression = 'gzip', usecols=attributes)
         # self.cbg_dictionary = dict(zip(cbg_data["Value"] , cbg_data["DA"]))
         # print(cbg_data)
-        # self.population = self.cbg_data["population"].sum()
-        # print("total population = ", self.population)
+        self.population = self.cbg_data["population"].sum()
+        print("total population = ", self.population)
         
 
     def weekly_home_panel(self):
@@ -509,6 +509,6 @@ if __name__ == "__main__":
             , '2020-08-24', '2020-08-31',  '2020-09-07', '2020-09-14'
             , '2020-09-21']
     # weeks = ['2020-03-09', '2020-03-16', '2020-03-23']
-    # nn = safegraph(weeks)
-    # temp_G, static_G = nn.run()
-    create_csv_edgelist(weeks)
+    nn = safegraph(weeks)
+    temp_G, static_G = nn.run()
+    # create_csv_edgelist(weeks)

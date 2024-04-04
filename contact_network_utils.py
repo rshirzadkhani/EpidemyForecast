@@ -269,14 +269,38 @@ def number_of_connected_components(graph, temporal=True):
     if temporal:
         temp_cc =[]
         for snapshot in graph:
-            temp_cc.append(nx.number_connected_components(snapshot))
-        ncc = np.mean(temp_cc)
+            # temp_cc.append(nx.number_connected_components(snapshot))
+            cc = sorted(nx.connected_components(snapshot), key=len, reverse=True)
+            print(list(cc))
+        # print(temp_cc)
+        # ncc = np.mean(temp_cc)
 
     else:
         ncc = nx.number_connected_components(graph)
     return ncc
         
 
+def creat_exponential_threshold_graph(temp_G, omega, tau):
+    edges = {}
+    G = nx.Graph()
+    for t, snapshot in enumerate(temp_G):
+        print("processing snapshot: ", t)
+        # print(snapshot)
+        edgelist = snapshot.edges()
+        # print(edgelist)
+        for (u,v) in edgelist:
+            if (u,v) in edges or (v,u) in edges:
+                edges[min(u,v), max(u, v)] += np.exp(-t/tau)
+                # G[min(u, v)][max(u, v)]["weight"] += np.exp(-t/tau)
+            else:
+                edges[min(u,v), max(u, v)] = np.exp(-t/tau)
+                # G.add_edge(min(u, v), max(u, v), weight = np.exp(-t/tau))
+    print("adding edges to static graph")
+    for (u, v), weight in edges.items():
+        if weight >= omega:
+            G.add_edge(u, v)
+    print("processed graph: " , G)
+    return G
 
 
 
@@ -285,12 +309,13 @@ if __name__ == "__main__":
     from LoadNetwork import load_contact_network, load_data
 
     datasets = [Data.SCHOOL, Data.WORKPLACE, Data.LYONSCHOOL, Data.HIGHSCHOOL, Data.CONFERENCE, Data.WIFI, Data.SAFEGRAPH]
-    networks = [Network.STATIC, Network.MST_D_MATCH, 
-                  Network.MST_W_MATCH]
-    for data in datasets:
+    # networks = [Network.STATIC, Network.MST_D_MATCH, 
+                #   Network.MST_W_MATCH]
+    for data in [Data.SCHOOL]:
         G, temp_G, T, all_nodes = load_data(data, t_split=False)
-        for ntw in networks:
-            print(ntw, number_of_connected_components(G, temporal=False))
+        
+        # for ntw in networks:
+        # print(number_of_connected_components(temp_G))
             # static_G, _ = load_contact_network(ntw, G, temp_G, 0, 0)
             # print(static_G)
             # print(ntw.name, maximum_node_degree(static_G, temporal=False))

@@ -23,7 +23,7 @@ def load_data(data, t_split=0):
     
     if t_split > 0:
         # t_split = np.round(0.25 * T)
-        print("Creating a split for data at time ", t_split)
+        print("Creating a split for data at time {}.".format(t_split))
         G, temp_G = create_prediction_edgelist("./"+temporal_data_path, t_split)
         print("Splitted network:", G)
     return G, temp_G, T, all_nodes

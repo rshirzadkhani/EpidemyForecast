@@ -56,7 +56,7 @@ class NetworkedSEIR_p:
                     print(t)
                     return t
             else:
-                if t < self.t_split:
+                if temporal_graph is not None:
                     graph = temporal_graph[t]
                 else:
                     graph = static_graph
