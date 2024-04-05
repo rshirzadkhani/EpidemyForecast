@@ -14,7 +14,7 @@ cur_dir = os.path.dirname(__file__)
         
 def plot_for_contact_network(x, sir_all, lower, upper, filename, labels):
     colors = ["#8B2323","#1f77b4", "#ff7f0e" , "#2E2E2E"] #real "#1a9850" blue:#67a9cf orange: "#fe9929" brown:"#8B2323" green:#2ca02c
-    lnstyle = ['solid','dashed', 'dashed','solid']
+    lnstyle = ['solid','solid', 'solid','dashed']
     # colors = ["#fe9929","#67a9cf","#8B2323" ,"#02008a" ,"#2E2E2E"] #synthetic
     
     # lnstyle = ['solid','solid', 'dashed','dashed', 'solid']

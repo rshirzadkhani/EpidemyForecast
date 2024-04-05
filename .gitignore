@@ -7,3 +7,4 @@
 *.csv.gz
 *.gz
 *.npz
+*.sh

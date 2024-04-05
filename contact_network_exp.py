@@ -106,8 +106,8 @@ def contact_network_exp_predict(BETA, SIGMA, GAMMA, EI_0, data, network, seeds, 
     for ntw in network:
         print("Load "+ntw.name+" network...") 
         static_G, temporal_G = load_contact_network(ntw, G, temp_G, 0, t_split-1)
-        # if ntw.name == Network.STATIC.name:
-        #     static_G = creat_exponential_threshold_graph(temp_G[0: t_split], 0.26, 1)
+        if ntw.name == Network.STATIC.name:
+            static_G = creat_exponential_threshold_graph(temp_G[0: t_split], 0.26, 1)
         
         
         if temporal_G is not None:
@@ -206,14 +206,14 @@ if __name__ == "__main__":
     SIGMA = 1/5
     GAMMA = 1/14
     # EI_0 = [3, 1]
-    EI_0 = [30, 10]
-    # EI_0 = [1200, 400]
+    # EI_0 = [30, 10]
+    EI_0 = [1200, 400]
     SEED = range(50)
     # standard_SEIR(BETA, SIGMA , GAMMA, 0, 29, 692, [EI_0], SEED, save_path = "school/figure_2/school_")
 
     # [Data.SCHOOL, Data.COP1, Data.COP2, Data.COP3, Data.SFHH, Data.WIFI, Data.SAFEGRAPH]
-
-    datasets = [Data.WIFI]
+    # [Data.HIGHSCHOOL, Data.LYONSCHOOL, Data.CONFERENCE, Data.WORKPLACE]
+    datasets = [Data.SAFEGRAPH]
 
     exp_ntw_list = [Network.STATIC, Network.MST_D_MATCH, 
                   Network.MST_W_MATCH, Network.TEMPORAL]
@@ -229,8 +229,8 @@ if __name__ == "__main__":
         full_path = path+"/forecasting/"+path+"_"
         # full_path = path+"/predict_cases_maxst/"+path+"_"
         # full_path = path+"/new_1227/"+path+"_"
-        contact_network_exp_predict(BETA, SIGMA, GAMMA, EI_0, data = data_i, seeds=SEED, 
-                            network = exp_ntw_list, save_path = full_path, predict=True)
+        # contact_network_exp_predict(BETA, SIGMA, GAMMA, EI_0, data = data_i, seeds=SEED, 
+        #                     network = exp_ntw_list, save_path = full_path, predict=True)
 
     ###################### Plot experiments fig 3 ######################
     
