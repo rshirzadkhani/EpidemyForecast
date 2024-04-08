@@ -3,7 +3,7 @@ Official python implementation of our paper:
 
 **Static Graph Approximations of Dynamic Contact Networks for Epidemic Forecasting**
 
-![overview](overview.PNG)
+![overview](overview.png)
 
 
 ## Usage
