@@ -310,13 +310,15 @@ if __name__ == "__main__":
     from model.Network import Network, Data
     from LoadNetwork import load_contact_network, load_data
 
-    datasets = [Data.SCHOOL, Data.WORKPLACE, Data.LYONSCHOOL, Data.HIGHSCHOOL, Data.CONFERENCE, Data.WIFI, Data.SAFEGRAPH]
+    datasets = [Data.SAFEGRAPH, Data.SCHOOL, Data.WORKPLACE, Data.LYONSCHOOL, Data.HIGHSCHOOL, Data.CONFERENCE, Data.WIFI]
     networks = [Network.TEMPORAL]
     for data in datasets:
-        G, temp_G, T, all_nodes = load_data(data, t_split=False)
-        
+        G, temp_G, T, all_nodes = load_data(data)
+        # G, temp_G, T, all_nodes = load_data(data, t_split = int(T * 0.5))
+        t_split = int(T * 0.5)
         for ntw in networks:
+            temporal_G = temp_G[0: t_split-1]
         # print(number_of_connected_components(temp_G))
-            # static_G, temp= load_contact_network(ntw, G, temp_G, 0, 0)
+            # static_G, temp= load_contact_network(ntw, G, temp_G, 0, t_split-1)
             # print(static_G)
-            print(data, maximum_node_degree(temp_G, temporal=True))
+            print(ntw.name, maximum_node_degree(temporal_G, temporal=True))
