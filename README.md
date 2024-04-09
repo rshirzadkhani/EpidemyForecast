@@ -21,9 +21,13 @@ python contact_network_exp.py
 ## Datasets
 
 All datasets used in this research are publicly available except SafeGraph dataset which should be purchased through their official website.
+
 The link to other datasets are provided below:
+
 Copenhagen: [https://doi.org/10.6084/m9.figshare.7267433](https://doi.org/10.6084/m9.figshare.7267433)
+
 Workplace, Lyon school, high school and Conference: [http://www.sociopatterns.org/datasets/](http://www.sociopatterns.org/datasets/)
+
 Wi-Fi: [https://ieee-dataport.org/open-access/crawdad-ilesansfilwifidog](https://ieee-dataport.org/open-access/crawdad-ilesansfilwifidog)
 
 
