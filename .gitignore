@@ -1,10 +1,7 @@
 /data
-/output
-/graph
 /run_scripts
 *.edgelist
 *.csv
 *.csv.gz
 *.gz
-*.npz
 *.sh

@@ -1,0 +1,6 @@
+nodes 32005
+T 31
+s_density 239
+t_density 6
+edges 3821057
+edge2 5836075

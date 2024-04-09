@@ -1,0 +1,4 @@
+nodes 403
+T 22
+s_density 47
+t_density 3

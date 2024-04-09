@@ -159,11 +159,12 @@ def aggregate_data(data):
 def create_edgelists():
     """this function creates all the edge lists based 
     on a 5 min resolution and save them in data folder"""
-    data=pd.read_csv("~/CopenhagenStudy/data/sfhh/sfhh_cop_hourly_agg.edgelist", sep=',')
+    data=pd.read_csv("~/EpidemyForecast/data/sfhh/sfhh_hourly_agg.edgelist", sep=',')
+    print(data.shape)
     # t_max=data['timestamp'].max()
     # full_list=data[(data["rssi"] >= -80)][["timestamp","user_a","user_b"]]
     # time_list=[t for t in np.arange(0,t_max+300,300)]
-    data.to_csv("~/CopenhagenStudy/data/sfhh/sfhh_cop_hourly_agg.csv.gz",sep=',', index=False, header=False)
+    data.to_csv("~/EpidemyForecast/data/sfhh/sfhh_hourly_agg.csv.gz",sep=',', index=False, header=False)
     # for i in time_list:
     #     data_p=data[(data["timestamp"]==i)][["user_a","user_b"]]
     #     data_path = os.path.join(cur_dir,"data", "school",'school_edgelist_'+str(i)+'.edgelist')

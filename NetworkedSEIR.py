@@ -49,6 +49,7 @@ class NetworkedSEIR:
             self.update_new( new_exposed, new_infected, new_recovered)
             self.update_cumulative_seir(t, new_infected, new_recovered)
         # self.gephi_extract(static_graph, temporal_graph)
+        # exit()
         return self.to_seir()
 
 
@@ -159,7 +160,7 @@ class NetworkedSEIR:
             print(len(infect))
             inf_dict = dict(zip(nodes,infect))
             nx.set_node_attributes(sg, inf_dict, "inf")
-            # nx.write_gexf(sg, "./graph/gephi/sfhh/sfhh_fulls_"+str(t)+".gexf")
+            nx.write_gexf(sg, "./graph/gephi/sfhh/new/sfhh_fulls_"+str(t)+".gexf")
 
 
     def run_npi(self, static_graph, temp_G, npis, t_apply_npis, **kwargs):

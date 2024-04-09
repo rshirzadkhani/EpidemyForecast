@@ -1,0 +1,4 @@
+nodes 219
+T 60
+s_density 153
+t_density 6

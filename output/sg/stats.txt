@@ -1,0 +1,4 @@
+nodes 127144
+T 15
+s_density 23
+t_density 6

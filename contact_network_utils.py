@@ -262,7 +262,7 @@ def maximum_node_degree(graph, temporal=True):
                 max_degree = deg
         max_degree_list.append(max_degree)
 
-    return np.mean(max_degree_list)
+    return np.mean(max_degree_list), np.std(max_degree_list)
 
 
 def number_of_connected_components(graph, temporal=True):
@@ -281,6 +281,8 @@ def number_of_connected_components(graph, temporal=True):
         
 
 def creat_exponential_threshold_graph(temp_G, omega, tau):
+    # T = len(temp_G)
+    
     edges = {}
     G = nx.Graph()
     for t, snapshot in enumerate(temp_G):
@@ -309,13 +311,12 @@ if __name__ == "__main__":
     from LoadNetwork import load_contact_network, load_data
 
     datasets = [Data.SCHOOL, Data.WORKPLACE, Data.LYONSCHOOL, Data.HIGHSCHOOL, Data.CONFERENCE, Data.WIFI, Data.SAFEGRAPH]
-    # networks = [Network.STATIC, Network.MST_D_MATCH, 
-                #   Network.MST_W_MATCH]
-    for data in [Data.SCHOOL]:
+    networks = [Network.TEMPORAL]
+    for data in datasets:
         G, temp_G, T, all_nodes = load_data(data, t_split=False)
         
-        # for ntw in networks:
+        for ntw in networks:
         # print(number_of_connected_components(temp_G))
-            # static_G, _ = load_contact_network(ntw, G, temp_G, 0, 0)
+            # static_G, temp= load_contact_network(ntw, G, temp_G, 0, 0)
             # print(static_G)
-            # print(ntw.name, maximum_node_degree(static_G, temporal=False))
+            print(data, maximum_node_degree(temp_G, temporal=True))

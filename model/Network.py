@@ -9,6 +9,7 @@ class Data(Enum):
     LYONSCHOOL = auto()
     HIGHSCHOOL = auto()
     CONFERENCE = auto()
+    SFHH = auto()
 
 class Network(Enum):
     BASE = auto()
@@ -22,3 +23,4 @@ class Network(Enum):
     MST_D_MATCH = auto()
     STANDARD_EQ = auto()
     STANDARD_GRAPH = auto()
+    EXP = auto()

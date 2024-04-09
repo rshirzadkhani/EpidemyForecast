@@ -3,7 +3,7 @@ from model.Safegraph_analyse import safegraph
 from model.Network import Network, Data
 from model.DataPath import DataPath
 import random
-from contact_network_utils import matching_degree_top_edge, matching_degree_top_node, network_density, node_degree_count, MST
+from contact_network_utils import matching_degree_top_edge, matching_degree_top_node, network_density, node_degree_count, MST, creat_exponential_threshold_graph
 import networkx as nx
 cur_dir = os.path.dirname(__file__)
 
@@ -90,7 +90,10 @@ def load_contact_network(network, G, temp_G, seed, t_split):
             print(new_graph)
             temporal_G.append(new_graph)
         static_G = nx.compose_all(temporal_G)
-
+    elif network.name == Network.EXP.name:
+        temporal_G = None
+        print("create exp")
+        static_G = creat_exponential_threshold_graph(temp_G, 0.02, 0.336)
 
     print("Number of Nodes:", static_G.number_of_nodes(), "|| Edges:", static_G.number_of_edges())
     return static_G, temporal_G

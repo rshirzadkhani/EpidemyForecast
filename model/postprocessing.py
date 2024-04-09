@@ -54,6 +54,7 @@ def statistical_characteristics(actives, cumulatives,names):
                 print(seed)
                 a = 1
             else:
+                print(max(actives[ntw][seed, :]))
                 max_infect = abs(max(actives[ntw][seed, :]) - max(actives[temp][seed, :]))
                 max_actives.append(max_infect)
                 
@@ -150,12 +151,12 @@ def modularity(static, temporal):
     return 
 
 def kl_div(ntw, names):
-    temporal = ntw[3]
-    for i in range(3):
+    temporal = ntw[4]
+    for i in range(4):
         kl = []
         jsh = []
         for j in range(temporal.shape[0]):
-            if np.std(ntw[i]) >= 0.00000001 and np.std(ntw[i]) >= 0.00000001:
+            if np.std(ntw[i]) >= 0.000001 and np.std(ntw[i]) >= 0.000001:
                 kl.append(entropy(ntw[i][j], temporal[j]))
         print(names[i].name, "mean:", statistics.mean(kl), "std dev:", statistics.stdev(kl))
 
