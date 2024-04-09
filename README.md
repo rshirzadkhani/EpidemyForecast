@@ -9,7 +9,7 @@ Official python implementation of our paper:
 ## Usage
 All experiments from the paper can be reproduced here
 
-1. download dataset
+1. download dataset and place them in the data/dataset_name/ folder
 
 2. run experiment
 
